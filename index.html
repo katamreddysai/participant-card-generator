@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Participant Card Generator</title>
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Generate your custom event participant card. Upload your photo, enter your name, position it perfectly in the chair area, and export as high-resolution PNG.">
+  <meta name="keywords" content="participant card generator, event badge, badge maker, avatar card generator, conference ticket generator">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- Particle Glow Background Elements -->
+  <div class="glow-bg">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+  </div>
+
+  <div class="app-container">
+    <!-- Header Area -->
+    <header class="main-header">
+      <div class="logo-area">
+        <div class="logo-icon-wrapper">
+          <i data-lucide="ticket" class="brand-icon"></i>
+        </div>
+        <div class="logo-text">
+          <h1>Aura<span>Card</span></h1>
+          <span class="tagline">Event Participant Studio</span>
+        </div>
+      </div>
+      
+      <div class="header-actions">
+        <div class="theme-toggle-wrapper">
+          <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle Theme Mode">
+            <i data-lucide="sun" class="sun-icon"></i>
+            <i data-lucide="moon" class="moon-icon"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Grid Dashboard -->
+    <main class="dashboard-grid">
+      
+      <!-- Left Column: Controls panel -->
+      <section class="controls-panel card-glass">
+        <div class="panel-header">
+          <i data-lucide="sliders" class="text-accent"></i>
+          <h2>Design Controls</h2>
+        </div>
+
+        <div class="control-section">
+          <!-- Step 1: Name Input -->
+          <div class="input-group">
+            <label for="participant-name">1. Participant Name</label>
+            <input type="text" id="participant-name" class="form-control text-input-premium" placeholder="Enter your full name" maxlength="32" value="Alex Morgan">
+          </div>
+        </div>
+
+        <!-- Step 2: Photo Uploader -->
+        <div class="control-section">
+          <span class="control-sublabel">2. Attendee Photo</span>
+          <div class="photo-uploader-container">
+            <label for="photo-input" class="file-upload-label" id="drop-zone">
+              <i data-lucide="image" class="upload-icon"></i>
+              <span id="upload-status-text">Click or drag & drop photo</span>
+              <span class="upload-subtext">Supports PNG, JPG, JPEG</span>
+              <input type="file" id="photo-input" accept="image/*" class="hidden">
+            </label>
+            <div id="photo-preview-bar" class="photo-preview-bar hidden">
+              <div class="preview-thumbnail-wrapper">
+                <img id="preview-thumbnail" src="" alt="Preview">
+              </div>
+              <div class="preview-info">
+                <span id="preview-filename">image.png</span>
+                <button id="clear-photo-btn" class="btn-sm-clear">
+                  <i data-lucide="trash-2"></i> Remove
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Photo Adjustments -->
+        <div class="control-section" id="adjustment-controls">
+          <span class="control-sublabel">3. Photo Fitting Adjustments</span>
+          <div class="adjustments-grid">
+            <div class="input-group">
+              <label for="photo-zoom">Zoom Scale</label>
+              <div class="range-container">
+                <input type="range" id="photo-zoom" class="form-range" min="0.1" max="3" step="0.05" value="1.0" disabled>
+                <div class="range-value-label"><span id="zoom-value">100</span>%</div>
+              </div>
+            </div>
+
+            <div class="grid-2-col">
+              <div class="input-group">
+                <label for="photo-offset-x">Horizontal Pan</label>
+                <div class="range-container">
+                  <input type="range" id="photo-offset-x" class="form-range" min="-300" max="300" step="2" value="0" disabled>
+                  <div class="range-value-label"><span id="offset-x-value">0</span>px</div>
+                </div>
+              </div>
+              <div class="input-group">
+                <label for="photo-offset-y">Vertical Pan</label>
+                <div class="range-container">
+                  <input type="range" id="photo-offset-y" class="form-range" min="-300" max="300" step="2" value="0" disabled>
+                  <div class="range-value-label"><span id="offset-y-value">0</span>px</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4: Advanced Template Adjuster (Optional / Collapsible) -->
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false" id="advanced-trigger">
+            <span class="accordion-title">
+              <i data-lucide="settings-2"></i>
+              <span>Advanced Poster Alignment</span>
+            </span>
+            <i data-lucide="chevron-down" class="accordion-chevron"></i>
+          </button>
+          <div class="accordion-content" id="advanced-content">
+            <div class="advanced-settings-wrapper">
+              
+              <!-- Custom Template Uploader -->
+              <div class="input-group mb-3">
+                <label for="template-input">Upload Custom Poster Template (Optional)</label>
+                <input type="file" id="template-input" accept="image/*" class="form-control">
+                <span class="help-text">Replaces default poster background with your own image.</span>
+              </div>
+
+              <hr class="section-divider">
+              
+              <span class="control-sublabel">Chair Frame Placement</span>
+              <div class="grid-2-col">
+                <div class="input-group">
+                  <label for="chair-x">X Position</label>
+                  <input type="range" id="chair-x" class="form-range" min="0" max="800" value="250">
+                </div>
+                <div class="input-group">
+                  <label for="chair-y">Y Position</label>
+                  <input type="range" id="chair-y" class="form-range" min="0" max="1000" value="280">
+                </div>
+              </div>
+              <div class="grid-2-col mt-2">
+                <div class="input-group">
+                  <label for="chair-w">Width</label>
+                  <input type="range" id="chair-w" class="form-range" min="50" max="600" value="300">
+                </div>
+                <div class="input-group">
+                  <label for="chair-h">Height</label>
+                  <input type="range" id="chair-h" class="form-range" min="50" max="600" value="330">
+                </div>
+              </div>
+              <div class="input-group mt-2">
+                <label for="chair-r">Corner Radius (Rounded Corners)</label>
+                <input type="range" id="chair-r" class="form-range" min="0" max="150" value="30">
+              </div>
+
+              <hr class="section-divider">
+
+              <span class="control-sublabel">Name & Text Placement</span>
+              <div class="grid-2-col">
+                <div class="input-group">
+                  <label for="name-x">Name X Position</label>
+                  <input type="range" id="name-x" class="form-range" min="50" max="750" value="400">
+                </div>
+                <div class="input-group">
+                  <label for="name-y">Name Y Position</label>
+                  <input type="range" id="name-y" class="form-range" min="100" max="950" value="815">
+                </div>
+              </div>
+              <div class="grid-2-col mt-2">
+                <div class="input-group">
+                  <label for="name-size">Name Font Size</label>
+                  <input type="range" id="name-size" class="form-range" min="16" max="72" value="36">
+                </div>
+                <div class="input-group">
+                  <label for="name-rotation">Name Rotation (Tilt)</label>
+                  <input type="range" id="name-rotation" class="form-range" min="-15" max="15" step="0.5" value="0">
+                </div>
+              </div>
+              <div class="input-group mt-2">
+                <label for="underline-y">Underline Y Position</label>
+                <input type="range" id="underline-y" class="form-range" min="100" max="980" value="830">
+              </div>
+
+              <button id="reset-layout-btn" class="btn-secondary mt-3 w-100">
+                <i data-lucide="rotate-ccw"></i> Reset Layout Coordinates
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </section>
+      
+      <!-- Right Column: Interactive Canvas Showcase -->
+      <section class="showcase-panel">
+        <!-- Live Preview Card -->
+        <div class="preview-card-outer">
+          <div class="preview-card card-glass" id="preview-card-element">
+            <span class="preview-badge">
+              <span class="pulse-indicator"></span>
+              Live Card Preview
+            </span>
+
+            <!-- Canvas Mounting Target -->
+            <div class="canvas-viewport">
+              <canvas id="card-canvas" width="800" height="1000"></canvas>
+            </div>
+
+            <!-- Download button -->
+            <div class="showcase-actions">
+              <button id="download-btn" class="btn-primary btn-glow">
+                <i data-lucide="download"></i>
+                <span>Download Card (PNG)</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>&copy; 2026 AuraCard Studio. Custom Event Participant Card Generator.</p>
+    </footer>
+  </div>
+
+  <!-- Notification Toast Container -->
+  <div class="toast-container" id="toast-mount"></div>
+
+  <!-- Application Logic -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>
