@@ -19,16 +19,16 @@ const STATE = {
   
   // Layout Coordinates (Adjustable via Advanced settings)
   layout: {
-    chairX: 250,
-    chairY: 280,
-    chairW: 300,
-    chairH: 330,
-    chairR: 30,
-    nameX: 400,
-    nameY: 815,
-    nameSize: 36,
-    nameRotation: 0,
-    underlineY: 830
+    chairX: 562,
+    chairY: 95,
+    chairW: 175,
+    chairH: 175,
+    chairR: 20,
+    nameX: 250,
+    nameY: 520,
+    nameSize: 28,
+    nameRotation: -3.0,
+    underlineY: 518
   },
 
   // Active theme
@@ -61,7 +61,7 @@ function checkLocalTemplate() {
     applyLayoutMode("vector");
     console.log("No local template.png found. Rendering built-in vector template.");
   };
-  img.src = "template.png";
+  img.src = "./template.png";
 }
 
 // 3. CANVAS DRAWING ENGINE
